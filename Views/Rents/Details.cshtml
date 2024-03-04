@@ -1,0 +1,47 @@
+﻿@model CarShare.Models.Rent
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Rent</h4>
+    <hr />
+    <div class="col-md-4 mb-4">
+        <img src="@Url.Action("GetImage", "Cars", new { imageName = Model.Car.ImgUrl })" class="card-img-top img-fluid" alt="Car Image" style="width: 100%; height: auto;" />
+    </div>
+    
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RentPrice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RentPrice)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RentStartDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RentStartDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RentEndDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RentEndDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (Model.RentEndDate < DateTime.Now && !Model.Car.IsAvailable)
+    {
+        <div class="alert-danger">
+            <h5>A fee will be charged for returning the car after the deadline</h5>
+        </div>
+        <a asp-action="ReturnCar" asp-controller="Cars" asp-route-id="@Model.Car.Id">Return a car</a>
+    }
+    <a asp-action="Index">Back to List</a>
+</div>

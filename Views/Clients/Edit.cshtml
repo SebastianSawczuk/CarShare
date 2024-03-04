@@ -1,0 +1,68 @@
+﻿@model CarShare.Models.Client
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Client</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ClientAdress.Id" />
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DebtCardNumber" class="control-label"></label>
+                <input asp-for="DebtCardNumber" class="form-control" />
+                <span asp-validation-for="DebtCardNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientAdress.ZipNumber" class="control-label"></label>
+                <input asp-for="ClientAdress.ZipNumber" class="form-control" />
+                <span asp-validation-for="ClientAdress.ZipNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientAdress.City" class="control-label"></label>
+                <input asp-for="ClientAdress.City" class="form-control" />
+                <span asp-validation-for="ClientAdress.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientAdress.Street" class="control-label"></label>
+                <input asp-for="ClientAdress.Street" class="form-control" />
+                <span asp-validation-for="ClientAdress.Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientAdress.Number" class="control-label"></label>
+                <input asp-for="ClientAdress.Number" class="form-control" />
+                <span asp-validation-for="ClientAdress.Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@if (User.IsInRole("Admin"))
+{
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

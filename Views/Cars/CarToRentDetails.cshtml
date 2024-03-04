@@ -1,0 +1,36 @@
+﻿@model Car
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Url.Action("GetImage", "Cars", new { imageName = Model.ImgUrl })" class="img-fluid" alt="Car Image">
+        </div>
+        <div class="col-md-6">
+            <h2>@Model.Brand @Model.Model</h2>
+            <p><strong>Mileage:</strong> @Model.Mileage</p>
+            <p><strong>Engine Capacity:</strong> @Model.EngineCapacity</p>
+            <p><strong>Basic Rent Price:</strong> @Model.BasicRentPrice</p>
+            <p><strong>Plates Number:</strong> @Model.PlatesNumber</p>
+            <p>
+                <strong>Availability:</strong> @if (Model.IsAvailable)
+                {
+                    <span class="text-success">Available</span>
+                }
+                else
+                {
+                    <span class="text-danger">Not Available</span>
+                }
+            </p>
+            <div>
+                @if (Model.IsAvailable)
+                {
+                    <a href="@Url.Action("CreateForm", "Rents", new { id = Model.Id })" class="btn btn-success">Rent Now</a>
+                }
+                else
+                {
+                    <button class="btn btn-secondary" disabled>Not Available</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

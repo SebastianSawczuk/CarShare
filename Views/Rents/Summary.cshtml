@@ -1,0 +1,57 @@
+﻿@model CarShare.Models.Rent
+@using Microsoft.AspNetCore.Identity
+@using CarShare.Areas.Identity.Data
+
+@inject SignInManager<CarShareUser> SignInManager
+@inject UserManager<CarShareUser> UserManager
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Fromularz</h1>
+
+<h4>Wypożyczenia</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Car.Id" hidden />
+            <input asp-for="Car.ImgUrl" hidden />
+            <input asp-for="Car.PlatesNumber" hidden />
+            <div class="col-md-4 mb-4">
+                <img src="@Url.Action("GetImage", "Cars", new { imageName = Model.Car.ImgUrl })" class="card-img-top img-fluid" alt="Car Image" style="width: 100%; height: auto;" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Car.Brand" class="control-label"></label>
+                <input asp-for="Car.Brand" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Car.Model" class="control-label"></label>
+                <input asp-for="Car.Model" class="form-control" readonly/>
+            </div>
+            <div class="form-group">
+                <label asp-for="RentStartDate" class="control-label"></label>
+                <input asp-for="RentStartDate" class="form-control" readonly/>
+            </div>
+            <div class="form-group">
+                <label asp-for="RentEndDate" class="control-label"></label>
+                <input asp-for="RentEndDate" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="RentPrice" class="control-label"></label>
+                <input asp-for="RentPrice" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Wypożycz" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
